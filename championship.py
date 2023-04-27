@@ -129,4 +129,4 @@ def simulate_championship(teams):
     games_list.clear()
 
     # return the dictionary of matches and points earned by each team
-    return teams[0]
+    return teams[0], points[teams[0]]
