@@ -1,0 +1,39 @@
+Fantasy League Simulator
+
+Current State:
+Ice Hockey League Simulator
+The app simulates an ice hockey league with an even number of teams.
+Each team plays against each other twice (home and away).
+Simulates games with overtime. This is done by smulating the drawing chances,
+if the games ends in a draw it will continue to simulate scores until one team wins,
+after that it will add one to the final for the team that wins. 
+E.g. 
+Team A vs Team B
+Team A - 78 power
+Team B - 78 power
+Chances will be Team A: 33.5%, Team B: 33.5%, Draw: 33%
+Assuming it ends in a draw it will choose a random number and the score would look like this:
+Team A 4 - 4 Team B
+After that it will simulate a game until a team is picked.
+Assuming that Team A is picked => Team A 5 - 4 Team B
+
+It calculates points based on the win type: if it is within regular time (so no draw) the winning team will get 3 points. If it is after overtime the winning team will get 2 points and the losing team 1.
+
+It can also simulate an n number of championship to approximate the winning chances of each team.
+Larger data sets are more accurate (10k or more). 
+
+It also offers some simple debugging functions.
+
+
+What needs to be done:
+Improve debugging/testing - so it is easier to switch between testing one championship or a large data set.
+
+Add fixtures - games are simulated in order but for a more realistic approach it should be done by fixtures. Implementing a "generate_fixtures" function is currently is in progress.
+The function is done but it needs to be implemented and adapted to match the software requirments.
+
+Add goals +/- for every championship for an extra measure (as teams can end with the same number of points)
+
+Add form to the teams and other factors that can improve or worsen the winning chances of teams.
+E.g. Playing at home should give the home team a small advantage. Rivals may have drawing chances reduced. New players etc.
+
+Files should be organized in folders.

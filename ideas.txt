@@ -27,3 +27,6 @@ Carta U22	                36	    10	22	4	-38	        34
 Steaua București	        36	    7	25	4	-49	        25
 Sport Club Miercurea-Ciuc	36	    6	27	3	-57	        21
 Sportul Studențesc	        36  	5	27	4	-58	        19
+
+add team form and other variables
+add goals +/-
