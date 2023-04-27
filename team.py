@@ -30,6 +30,8 @@ def reset_team_data(teams):
         team.positions = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
 
 def print_team_order(points, teams):
+    print()
+    print()
     print("Power             Team                 Points")
     print("----------------------------------------------")
     for i, team in enumerate(teams):

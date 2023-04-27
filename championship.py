@@ -1,7 +1,10 @@
 import games
 import debug
 import team
+import random
 
+def print_ot():
+    print(" | After OT")
 
 def print_team_standings(points, teams):
     # sort the teams based on their total points
@@ -19,6 +22,33 @@ def print_team_standings(points, teams):
         for i, team in enumerate(sorted_teams):
             print("{:<10}{:<20}{:>5}".format(
                 team.power, team.name, points[team.name]))
+            
+def generate_fixtures(teams):
+
+    team_list = teams
+    num_teams = len(team_list)
+    num_games_round = int(num_teams/2)
+    fixtures = []
+
+    # Generate the first round robin
+    fixtures = []
+    for i in range(num_teams-1):
+        for j in range(num_teams//2):
+            games.add_game(team_list[j], team_list[num_teams-j-1], 0, 0, fixtures)
+        
+        # Rotate the teams for the next round robin
+        teams.insert(1, team_list.pop())
+        
+    # Generate the return fixtures
+    for i in range(len(fixtures)):
+            games.add_game(fixtures[i].team_b, fixtures[i].team_a, 0, 0, fixtures)
+
+    for i in range(0, len(fixtures), num_games_round):
+        group = fixtures[i:i+num_games_round]
+        random.shuffle(group)
+        fixtures[i:i+num_games_round] = group
+
+    return fixtures
 
 
 def print_team_championship_data(teams):
@@ -55,37 +85,28 @@ def simulate_championship(teams):
     matches = {}
     points = {team: 0 for team in teams}
     games_list = []
+    games_per_round = int(len(teams)/2)
 
-    #generate all games
-    # generate all unique pairs of teams
-    for i in range(len(teams)):
-        for j in range(len(teams)):
-            if i != j:
-                # simulate home and away matches between each pair of teams
-                team_a = teams[i]
-                team_b = teams[j]
-                score_a = 0
-                score_b = 0
-
-                games.add_game(team_a, team_b, score_a, score_b, games_list)
-
-
-    #create the fixtures
-    
+    games_list = generate_fixtures(teams)
     
     for i in range(len(games_list)):
 
         games_list[i].score_a, games_list[i].score_b, ot = games.match_simulator(games_list[i].team_a.power, games_list[i].team_b.power)
 
         if debug.debug_print_games:
-            print(f"{games_list[i].team_a.name} vs. {games_list[i].team_b.name}: {games_list[i].score_a} - {games_list[i].score_b}")
-            print()
+            
+            if i % games_per_round == 0:
+                print()
+                print(f"Round {int((i + 1) / games_per_round) + 1}")
+            
 
         if ot == 0:
             if games_list[i].score_a > games_list[i].score_b:
                 points[games_list[i].team_a] += 3
             elif games_list[i].score_b > games_list[i].score_a:
                 points[games_list[i].team_b] += 3
+            if debug.debug_print_games:
+                print(f"{games_list[i].team_a.name} vs. {games_list[i].team_b.name}: {games_list[i].score_a} - {games_list[i].score_b}")
         elif ot == 1:
             if games_list[i].score_a > games_list[i].score_b:
                 points[games_list[i].team_a] += 2
@@ -93,7 +114,9 @@ def simulate_championship(teams):
             elif games_list[i].score_b > games_list[i].score_a:
                 points[games_list[i].team_b] += 2
                 points[games_list[i].team_a] += 1
-               
+            if debug.debug_print_games:
+                print(f"{games_list[i].team_a.name} vs. {games_list[i].team_b.name}: {games_list[i].score_a} - {games_list[i].score_b}", end=" ")  
+                print_ot() 
         
 
     teams = team.sort_teams(teams, points)

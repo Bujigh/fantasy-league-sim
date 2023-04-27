@@ -24,12 +24,10 @@ Larger data sets are more accurate (10k or more).
 
 It also offers some simple debugging functions.
 
+Fixtures have been added, games are generated in fixtures and then simulated.
 
 What needs to be done:
 Improve debugging/testing - so it is easier to switch between testing one championship or a large data set.
-
-Add fixtures - games are simulated in order but for a more realistic approach it should be done by fixtures. Implementing a "generate_fixtures" function is currently is in progress.
-The function is done but it needs to be implemented and adapted to match the software requirments.
 
 Add goals +/- for every championship for an extra measure (as teams can end with the same number of points)
 

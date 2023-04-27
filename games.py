@@ -113,8 +113,7 @@ def match_simulator(team_a_power, team_b_power):
         # simulate overtime until there is a winner
         ot = 1
 
-        if debug.debug_print_ot:
-            print_ot(ot)
+        
 
         while True:
             team_a_score_ot, team_b_score_ot = score_simulator(
@@ -130,6 +129,4 @@ def match_simulator(team_a_power, team_b_power):
     return (team_a_score, team_b_score, ot)
 
 
-def print_ot(ot):
-    if ot:
-        print("After OT")
+
