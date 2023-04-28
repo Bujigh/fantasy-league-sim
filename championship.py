@@ -87,17 +87,26 @@ def simulate_championship(teams):
     games_list = []
     games_per_round = int(len(teams)/2)
 
+    round_end = 0
+
     games_list = generate_fixtures(teams)
     
     for i in range(len(games_list)):
 
         games_list[i].score_a, games_list[i].score_b, ot = games.match_simulator(games_list[i].team_a.power, games_list[i].team_b.power)
-
+        
+        
         if debug.debug_print_games:
-            
+            if i == round_end and i != 0:
+                teams = team.sort_teams(teams, points)
+                team.print_team_order(points, teams)
+                c = input()
+                round_end = 0
+
             if i % games_per_round == 0:
                 print()
                 print(f"Round {int((i + 1) / games_per_round) + 1}")
+                round_end = i + int(len(teams)) / 2
             
 
         if ot == 0:
@@ -118,13 +127,18 @@ def simulate_championship(teams):
                 print(f"{games_list[i].team_a.name} vs. {games_list[i].team_b.name}: {games_list[i].score_a} - {games_list[i].score_b}", end=" ")  
                 print_ot() 
         
+        
 
     teams = team.sort_teams(teams, points)
 
     team.add_team_position(teams)
 
     if debug.debug_print_standings:
+        print()
+        print()
+        print("Final Standings")
         team.print_team_order(points, teams)
+            
 
     games_list.clear()
 
