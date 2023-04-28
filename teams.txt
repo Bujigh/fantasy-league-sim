@@ -1,10 +1,8 @@
-SC Miercurea Ciuc - 91
-Tappara Tampere - 94
-ZSC Lions Zuerich - 92
-Grizzly Wolfsburg - 90
-Dunarea Galați - 91
-Boston Bruins - 99
-Carolina Hurricanes - 94
-Toronto Maple Leafs - 95
-Edmonton Oilers - 96
-Colorado Avalanche - 92
+Team A - 20
+Avantul Prabusirea - 20
+Dojna Calomniei - 20
+Juventus Baicoi - 20
+AHCBH Lungani - 20
+Luceafarul Braila - 20
+Sportu' Colentina - 20
+Viitorul Caracal - 20

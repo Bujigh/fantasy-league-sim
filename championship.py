@@ -100,7 +100,7 @@ def simulate_championship(teams):
             if i == round_end and i != 0:
                 teams = team.sort_teams(teams, points)
                 team.print_team_order(points, teams)
-                c = input()
+                #c = input()
                 round_end = 0
 
             if i % games_per_round == 0:
@@ -126,8 +126,9 @@ def simulate_championship(teams):
             if debug.debug_print_games:
                 print(f"{games_list[i].team_a.name} vs. {games_list[i].team_b.name}: {games_list[i].score_a} - {games_list[i].score_b}", end=" ")  
                 print_ot() 
-        
-        
+
+        games_list[i].team_a.goals += games_list[i].score_a - games_list[i].score_b
+        games_list[i].team_b.goals += games_list[i].score_b - games_list[i].score_a
 
     teams = team.sort_teams(teams, points)
 

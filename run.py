@@ -3,7 +3,7 @@ from team import create_teams, reset_team_data
 from championship import simulate_championship, print_team_championship_data
 import debug
 
-run_type = 1
+run_type = 0
 
 def run():
     teams = []
